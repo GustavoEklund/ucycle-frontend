@@ -1,9 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import Routes from './routes';
+
 ReactDOM.render(
     <React.StrictMode>
-        <h1>uCycle</h1>
+        <Routes />
     </React.StrictMode>,
-    document.getElementById('root')
+    document.getElementById('root'),
 );
