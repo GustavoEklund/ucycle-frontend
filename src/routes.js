@@ -5,13 +5,14 @@ import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
 import Landing from './pages/Landing';
+import Login from './pages/Login';
 
 export default function Routes() {
     const theme = React.useMemo(
         () =>
             createMuiTheme({
                 palette: {
-                    type: 'light', // prefersDarkMode ? 'dark' : 'light',
+                    type: 'light',
                     primary: blue,
                     secondary: green,
                 },
@@ -26,6 +27,7 @@ export default function Routes() {
                 <Switch>
                     <Route exact path="/" component={() => <h1>Home</h1>} />
                     <Route exact path="/landing" component={Landing} />
+                    <Route exact path="/login" component={Login} />
                 </Switch>
             </BrowserRouter>
         </ThemeProvider>
