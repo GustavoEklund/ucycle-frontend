@@ -1,6 +1,9 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(() => ({
+    container: {
+        marginTop: '25vh',
+    },
     logo: {
         marginBottom: '20vh',
         width: '100%',

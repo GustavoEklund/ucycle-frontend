@@ -9,13 +9,15 @@ export default function Landing() {
     return (
         <Grid container>
             <Grid item xs={2} />
-            <Grid item xs={8} style={{ marginTop: '25vh' }} component="form">
+            <Grid item xs={8} className={classes.container}>
                 <img
                     src={`${process.env.REACT_APP_ASSETS_URL}/logo-ucycle.png`}
                     alt="uCycle logo"
                     className={classes.logo}
                 />
                 <Button
+                    component={RouterDomLink}
+                    to="/registro"
                     variant="contained"
                     color="primary"
                     fullWidth
@@ -25,6 +27,8 @@ export default function Landing() {
                     Criar conta
                 </Button>
                 <Button
+                    component={RouterDomLink}
+                    to="/login"
                     variant="outlined"
                     color="primary"
                     fullWidth
@@ -33,7 +37,6 @@ export default function Landing() {
                 >
                     Entrar
                 </Button>
-
                 <Link component={RouterDomLink} to="/" className={classes.link}>
                     Agora não, obrigado
                 </Link>
