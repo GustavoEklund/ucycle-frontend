@@ -2,7 +2,7 @@ import axios from 'axios';
 import { getToken, getUserData, logout } from './authentication';
 
 const api = axios.create({
-    baseURL: 'https://localhost/ucycle/ucycle-backend',
+    baseURL: process.env.REACT_APP_API_URL,
 });
 
 api.interceptors.request.use(async (config) => {
