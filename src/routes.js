@@ -5,16 +5,32 @@ import {
     BrowserRouter,
     Switch,
     Route,
-    Redirect,
+    Redirect, Link,
 } from 'react-router-dom';
 import { blue, green } from '@material-ui/core/colors';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import {
+    AppBar,
+    Grid,
+    IconButton,
+    Toolbar,
+    Typography,
+} from '@material-ui/core';
 
+import HomeIcon from '@material-ui/icons/Home';
+import SearchIcon from '@material-ui/icons/Search';
+import LocalOfferIcon from '@material-ui/icons/LocalOffer';
+import MailOutlineIcon from '@material-ui/icons/MailOutline';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import Landing from './pages/Landing';
+
 import Login from './pages/Login';
 import Register from './pages/Register';
+import Home from './pages/Home';
 import { isAuthenticated } from './services/authentication';
+import Profile from './pages/Profile';
+import useStyles from './styles';
 
 function AuthRoute({
     component: Component,
@@ -55,6 +71,8 @@ export default function Routes() {
     //     window.location.replace(window.location.href.replace(/^http(s?)/, 'https'));
     // }
 
+    const classes = useStyles();
+
     const theme = React.useMemo(
         () => createMuiTheme({
             palette: {
@@ -69,15 +87,44 @@ export default function Routes() {
     return (
         <ThemeProvider theme={theme}>
             <CssBaseline />
-            <BrowserRouter>
-                <Switch>
-                    <AuthRoute isPublic exact path="/" component={Landing} />
-                    <AuthRoute isPublic exact path="/landing" component={Landing} />
-                    <AuthRoute isPublic exact path="/login" component={Login} />
-                    <AuthRoute isPublic exact path="/registro" component={Register} />
-                    <AuthRoute isPublic={false} component={() => <h1>Home</h1>} />
-                </Switch>
-            </BrowserRouter>
+            <Grid container>
+                <BrowserRouter>
+                    <Switch>
+                        <AuthRoute isPublic exact path="/" component={Landing} />
+                        <AuthRoute isPublic exact path="/landing" component={Landing} />
+                        <AuthRoute isPublic exact path="/login" component={Login} />
+                        <AuthRoute isPublic exact path="/registro" component={Register} />
+                        <AuthRoute isPublic={false} exact path="/perfil" component={Profile} />
+                        <AuthRoute isPublic={false} component={Home} />
+                    </Switch>
+                    {isAuthenticated() ? (
+                        <AppBar position="fixed" color="default" className={classes.appBar}>
+                            <Toolbar className={classes.appBarContainer}>
+                                <IconButton edge="start" component={Link} to="/home">
+                                    <HomeIcon style={{ display: 'block' }} />
+                                    <Typography style={{ display: 'block' }}>Home</Typography>
+                                </IconButton>
+                                <IconButton component={Link} to="/home">
+                                    <SearchIcon />
+                                    <Typography>Buscar</Typography>
+                                </IconButton>
+                                <IconButton component={Link} to="/home">
+                                    <LocalOfferIcon />
+                                    <Typography>Vender</Typography>
+                                </IconButton>
+                                <IconButton component={Link} to="/home">
+                                    <MailOutlineIcon />
+                                    <Typography>Mensag.</Typography>
+                                </IconButton>
+                                <IconButton edge="end" component={Link} to="/perfil">
+                                    <AccountCircleIcon />
+                                    <Typography>Perfil</Typography>
+                                </IconButton>
+                            </Toolbar>
+                        </AppBar>
+                    ) : null}
+                </BrowserRouter>
+            </Grid>
         </ThemeProvider>
     );
 }
