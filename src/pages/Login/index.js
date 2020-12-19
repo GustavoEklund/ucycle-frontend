@@ -70,6 +70,7 @@ export default function Login() {
                     type="email"
                     name="email"
                     placeholder="Email"
+                    autoComplete="username"
                     inputRef={register(validation.email)}
                     error={Boolean(errors.email)}
                     helperText={errors.email && errors.email.message}
@@ -81,6 +82,7 @@ export default function Login() {
                     type="password"
                     name="password"
                     placeholder="Senha"
+                    autoComplete="current-password"
                     inputRef={register(validation.password)}
                     error={Boolean(errors.password)}
                     helperText={errors.password && errors.password.message}
