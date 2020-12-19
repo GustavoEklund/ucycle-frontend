@@ -100,6 +100,14 @@ export default function Login() {
                 <Link component={RouterDomLink} to="/recuperar-senha" className={classes.link}>
                     Esqueci minha senha
                 </Link>
+                <Link
+                    component={RouterDomLink}
+                    to="/registro"
+                    className={classes.link}
+                    style={{ marginTop: 20, marginBottom: 50 }}
+                >
+                    Ainda não tenho uma conta
+                </Link>
             </Grid>
             <Grid item xs={2} />
             <Snackbar
